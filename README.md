@@ -1,3 +1,0 @@
-# FDP
-
-meu primeiro script
