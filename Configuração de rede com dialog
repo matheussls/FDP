@@ -1,0 +1,22 @@
+#!/bin/bash 
+# Matheus Silveira Santos 
+# Projeto thales
+# FDP
+IP=$( dialog --stdout -- inputbox "Digite seu numero de IP: " 0 0 )
+MASCARA=$( dialog --stdout -- inputbox "Digite seu numero de mascara: " 0 0 )
+GATEWAY=$( dialog --stdout -- inputbox "Digite seu numero de gateway: " 0 0 )
+DNS=$( dialog --stdout -- inputbox "Digite seu numero do servidor DNS: " 0 0 )
+echo
+echo "auto lo 
+      iface lo inet loopback
+      
+      #rede primaria 
+      auto eth0
+      iface eth0 inet static
+      address $IP
+      netmask $MASCARA
+      gateway $GATEWAY " > /etc/network/interfaces
+echo "nameserver $DNS > /etc/resolv.conf
+/etc/init.d/networking restar
+ping -c4 $GATEWAY
+exit
